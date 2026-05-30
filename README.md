@@ -174,20 +174,25 @@ To access the web interfaces from your browser, you need to expose the services 
   1. Expose the Application: (Assuming the app service runs on port 5000)
 
    ```bash
-  kubectl port-forward svc/<app-service-name> 5000:5000 --address 0.0.0.0 &g
+  kubectl port-forward svc/<app-service-name> 5000:5000 --address 0.0.0.0 &
    ```
 
   2. Expose Prometheus:
   
   ```bash
-  kubectl port-forward svc/prometheus-kube-prometheus-prometheus -n monitoring 9090:9090 --address 0.0.0.0 &
+  kubectl port-forward svc/kind-prometheus-kube-prom-prometheus -n monitoring 9090:9090 --address 0.0.0.0 &
    ```
+
+![](<./screenshots/prom.dashboard.png>)
   
   3. Expose Grafana:
 
   ```bash
   kubectl port-forward svc/prometheus-grafana -n monitoring 3000:80 --address 0.0.0.0 &
    ```
+
+![](<./screenshots/grafana-setup.png>)
+
 
 ----
 
@@ -200,10 +205,23 @@ To access the web interfaces from your browser, you need to expose the services 
 
 - Import Dashboards: Go to the Dashboards section in Grafana, click "Import", and paste standard Kubernetes dashboard IDs (e.g., from grafana.com/dashboards) to instantly visualize your cluster's CPU, Memory, and Network metrics.
 
+ ![](<./screenshots/grafana-dashboard1.png>)
+
+ 
+ ![](<./screenshots/grafana-dashboard.png>)
+
+
 ----
 
 ## Summary
 
 This project successfully establishes a robust monitoring environment for a Kubernetes cluster without writing dozens of complex, manual configuration files. By utilizing Helm, the deployment of industry-standard tools like Prometheus and Grafana becomes streamlined and efficient. The resulting setup provides deep, actionable insights into cluster performance, proving invaluable for maintaining high-availability microservices.
+
+----
+
+## Credits
+Huge thanks to [TrainWithShubham](https://www.youtube.com/@TrainWithShubham) for the fantastic video tutorial that inspired and guided me for this project!
+
+----
 
 
